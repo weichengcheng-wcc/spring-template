@@ -27,11 +27,18 @@
                 <artifactId>spring-utils</artifactId>
                 <version>1.0.0-SNAPSHOT</version>
             </dependency>
+
+            <!-- core -->
+            <dependency>
+                <groupId>com.cw</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
     <modules>
-        <module>spring-template-api</module>
         <module>spring-template-web</module>
         <module>spring-template-api</module>
     </modules>
