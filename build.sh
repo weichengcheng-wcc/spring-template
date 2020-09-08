@@ -16,7 +16,7 @@ echo '构建jar包完毕.....'
 
 
 echo '停止旧服务.....'
-running=`docker ps --filter name=mybatis-generator --format "table {{.ID}}"`
+running=`docker ps --filter name=spring-template --format "table {{.ID}}"`
 
 running_id=$(echo $running | awk '{print $3}')
 
@@ -31,7 +31,7 @@ echo '旧服务停止完毕......'
 
 
 echo '删除运行容器.....'
-continer=`docker ps -a --filter name=mybatis-generator --format "table {{.ID}}"`
+continer=`docker ps -a --filter name=spring-template --format "table {{.ID}}"`
 
 continer_id=$(echo $continer | awk '{print $3}')
 
@@ -45,7 +45,7 @@ echo '运行容器删除完毕.....'
 
 
 echo '删除镜像.......'
-images=`docker images mybatis-generator:1.0 --format "table {{.ID}}\t{{.Repository}}\t{{.Size}}"`
+images=`docker images spring-template:1.0 --format "table {{.ID}}\t{{.Repository}}\t{{.Size}}"`
 
 id=$(echo $images | awk '{print $5}')
 
@@ -60,22 +60,22 @@ echo '删除镜像完毕.......'
 
 
 echo '构建镜像.......'
-docker build -t mybatis-generator:1.0 .
+docker build -t spring-template:1.0 .
 echo '构建镜像完毕.......'
 
 
 
 echo '启动镜像.......'
-docker run -dit --name mybatis-generator mybatis-generator:1.0 /bin/bash
+docker run -dit --name spring-template spring-template:1.0 /bin/bash
 echo '启动镜像成功......'
 
 
 
 echo '保存镜像.....'
-docker save -o mybatis-generator.tar mybatis-generator:1.0
+docker save -o spring-template.tar spring-template:1.0
 echo '保存镜像完毕.....'
 
 
 echo '开始上传镜像.....'
-docker scp mybatis-generator.tar root@111.229.180.167:/data/images
+scp spring-template.tar root@111.229.180.167:/data/images
 echo '上传镜像完毕.....'
